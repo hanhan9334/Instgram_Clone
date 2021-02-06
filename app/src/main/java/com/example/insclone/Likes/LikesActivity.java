@@ -1,23 +1,25 @@
-package com.example.insclone;
+package com.example.insclone.Likes;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.nfc.Tag;
-import android.os.Bundle;
-import android.util.Log;
-
+import com.example.insclone.R;
 import com.example.insclone.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
-public class MainActivity extends AppCompatActivity {
-
-    private static final String TAG = "MainActivity";
+public class LikesActivity extends AppCompatActivity {
+    private static final String TAG = "SearchActivity";
+    private static final int ACTIVITY_NUM = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Log.d(TAG, "onCreate: Starting");
+        setContentView(R.layout.activity_search);
+        Log.d(TAG, "onCreate: started");
 
         setUpBottomNavigationView();
     }
@@ -29,5 +31,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "setUpBottomNavigationView: setting up BottomNavigationView");
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx)findViewById(R.id.bottomNavViewBar);
         BottomNavigationViewHelper.setupNavigationView(bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(this,bottomNavigationViewEx);
+        Menu menu = bottomNavigationViewEx.getMenu();
+        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+        menuItem.setChecked(true);
+
     }
 }

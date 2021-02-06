@@ -1,15 +1,19 @@
-package com.example.insclone;
+package com.example.insclone.Search;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import com.example.insclone.R;
 import com.example.insclone.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class SearchActivity extends AppCompatActivity {
     private static final String TAG = "SearchActivity";
+    private static final int ACTIVITY_NUM = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +27,13 @@ public class SearchActivity extends AppCompatActivity {
     /**
      * BottomNavigationView Set up
      */
-    private void setUpBottomNavigationView(){
+    private void setUpBottomNavigationView() {
         Log.d(TAG, "setUpBottomNavigationView: setting up BottomNavigationView");
-        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx)findViewById(R.id.bottomNavViewBar);
+        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.bottomNavViewBar);
         BottomNavigationViewHelper.setupNavigationView(bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(this, bottomNavigationViewEx);
+        Menu menu = bottomNavigationViewEx.getMenu();
+        MenuItem menuItem = menu.getItem(ACTIVITY_NUM);
+        menuItem.setChecked(true);
     }
 }
