@@ -1,14 +1,20 @@
 package com.example.insclone.Profile;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+
 import androidx.appcompat.widget.Toolbar;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.insclone.AccountsettingsActivity;
 import com.example.insclone.R;
 import com.example.insclone.Utils.BottomNavigationViewHelper;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
@@ -16,6 +22,8 @@ import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 public class ProfileActivity extends AppCompatActivity {
     private static final String TAG = "ProfileActivity";
     private static final int ACTIVITY_NUM = 4;
+
+    private Context mContext = ProfileActivity.this;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -33,17 +41,13 @@ public class ProfileActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.profileToolBar);
         setSupportActionBar(toolbar);
 
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
+        ImageView profileMenu = (ImageView) findViewById(R.id.profileMenu);
+        profileMenu.setOnClickListener(new View.OnClickListener(){
             @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                Log.d(TAG, "onMenuItemClick: Clicked menu items"+item);
-                switch (item.getItemId()){
-                    case R.id.profileName:
-                        Log.d(TAG, "onMenuItemClick: Navigating to profile preference");
-
-
-                }
-                return false;
+            public void onClick(View view){
+                Log.d(TAG, "onClick: Navigating to account settings");
+                Intent intent = new Intent(mContext, AccountsettingsActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -62,9 +66,4 @@ public class ProfileActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.profile_menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
 }
